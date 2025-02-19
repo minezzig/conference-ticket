@@ -1,11 +1,20 @@
+import { useState } from "react";
 import InputField from "./components/InputField";
 import UploadImage from "./components/UploadImage";
 
 function App() {
-  const handleSubmit = (e) => {
+  const [formData, setFormData] = useState({name: "", email: "", github: ""});
+  
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({...prev, [e.target.name]: e.target.value}))
+    console.log(formData)
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert("submit");
   };
+
   return (
     <div className="flex flex-col items-center pt-10 bg-[url(./images/background-mobile.png)] md:bg-[url(./images/background-tablet.png)] lg:bg-[url(./images/background-desktop.png)] w-full h-screen bg-cover bg-no-repeat ">
       <img src="/images/pattern-squiggly-line-top.svg" alt="" className="absolute top-0 right-0 h-20 md:h-auto"/>
@@ -22,9 +31,9 @@ function App() {
       <div className="max-w-[600px] z-20">
         <form onSubmit={handleSubmit}>
           <UploadImage />
-          <InputField label="Full Name" />
-          <InputField label="Email Address" placeholder="example@email.com" />
-          <InputField label="GitHub Username" placeholder="@yourusername" />
+          <InputField label="Full Name" name="name" value={formData.name} onChange={handleChange}/>
+          <InputField label="Email Address" name="email" value={formData.email} placeholder="example@email.com" onChange={handleChange}/>
+          <InputField label="GitHub Username" name="github" value={formData.github} placeholder="@yourusername" onChange={handleChange}/>
           <div>
             <button
               type="submit"
