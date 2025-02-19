@@ -32,8 +32,8 @@ function Ticket({ data, image }: TicketProps) {
                 </div>
             </div>
             <div className="flex gap-3">
-                <div>
-                    <img src={image}  className="h-14"/></div>
+                <div className="h-14 w-14">
+                    <img src={image} className="h-full w-full object-cover"/></div>
                 <div>
                     <div className="mb-1 text-lg">Jonatan Kristof</div>
                     <div className="text-sm text-gray-500 flex gap-1 items-center"><img src="/images/icon-github.svg"/>@{data.github}</div>
