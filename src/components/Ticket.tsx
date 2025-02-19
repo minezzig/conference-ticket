@@ -22,7 +22,7 @@ function Ticket({ data }: TicketProps) {
       </div>
       <div className="relative">
         
-        <div className="absolute text-white p-5 justify-center flex flex-col gap-5 h-full">
+        <div className="absolute text-white p-5 justify-around flex flex-col gap-5 h-full">
             <div className="flex gap-3 items-start">
                 <img src="../../public/images/logo-mark.svg"/>
                 <div>
