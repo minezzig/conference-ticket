@@ -1,8 +1,9 @@
 interface TicketProps {
   data: { name: string; email: string; github: string };
+  image: string
 }
 
-function Ticket({ data }: TicketProps) {
+function Ticket({ data, image }: TicketProps) {
   
    data.email = "g@gmail.com"
    data.github = "mygithub"
@@ -32,7 +33,7 @@ function Ticket({ data }: TicketProps) {
             </div>
             <div className="flex gap-3">
                 <div>
-                    <img src="/images/image-avatar.jpg"  className="h-14"/></div>
+                    <img src={image}  className="h-14"/></div>
                 <div>
                     <div className="mb-1 text-lg">Jonatan Kristof</div>
                     <div className="text-sm text-gray-500 flex gap-1 items-center"><img src="/images/icon-github.svg"/>@{data.github}</div>

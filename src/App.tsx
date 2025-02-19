@@ -61,7 +61,7 @@ function App() {
             </div>
           </form>
       </div>
-      </>) : <Ticket data={formData}/>}
+      </>) : <Ticket data={formData} image={image}/>}
           <img src="/images/pattern-squiggly-line-bottom-mobile-tablet.svg" alt="" className=" md:hidden block absolute bottom-0"/>    
           <img src="/images/pattern-squiggly-line-bottom-desktop.svg" alt="" className="hidden md:block absolute bottom-0 left-0"/>
     </div>
