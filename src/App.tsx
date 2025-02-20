@@ -67,7 +67,7 @@ function App() {
   };
 
   return (
-    <div className="flex min-h-screen w-full flex-col items-center bg-[url(./images/background-mobile.png)] bg-cover bg-no-repeat py-10 md:bg-[url(./images/background-tablet.png)] lg:bg-[url(./images/background-desktop.png)]">
+    <div className="flex min-h-screen w-full flex-col items-center bg-[url(/images/background-mobile.png)] bg-cover bg-no-repeat py-10 md:bg-[url(/images/background-tablet.png)] lg:bg-[url(/images/background-desktop.png)]">
       <img
         src="/images/pattern-squiggly-line-top.svg"
         alt="top squiggle"
