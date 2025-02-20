@@ -36,6 +36,7 @@ function UploadImage({ handleSaveImage, image, setImage, imageError, }: UploadIm
   // if image is dropped, add it to state
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
+    setIsTarget(false)
     const file = e.dataTransfer.files?.[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
