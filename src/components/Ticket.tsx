@@ -16,7 +16,7 @@ function Ticket({ data, image }: TicketProps) {
           ! Your ticket is ready.
         </div>
         <div className="text-neutral3 text-center text-lg">
-          We've emailed your ticet to{" "}
+          We've emailed your ticket to{" "}
           <span className="text-orange1">{data.email}</span> and will send
           updates in the run up to the vent
         </div>
