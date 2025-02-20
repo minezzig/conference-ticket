@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
-html, body {
-    height: 100%;
+/* fonts */
+@theme {
+    --font-inconsolata: Inconsolata, sans-serif;
+}
+
+/* colors */
+@theme {
+    --color-neutral1: hsl(0, 0%, 100%);
+    --color-neutral2: hsl(252, 6%, 83%);
+    --color-neutral3: hsl(245, 15%, 58%);
+    --color-neutral4: hsl(245, 19%, 35%);
+    --color-neutral5: hsl(248, 70%, 10%);
+    --color-orange1: hsl(7, 88%, 67%);
+    --color-orange2: hsl(7, 71%, 60%);
+    --color-grad1: hsl(7, 86%, 67%);
+    --color-grad2: hsl(0, 0%, 100%);
 }

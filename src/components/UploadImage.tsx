@@ -1,34 +1,61 @@
-import { useRef} from "react";
+import { useRef } from "react";
 
 interface UploadImageProps {
-  handleSaveImage: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  image: string | null
+  handleSaveImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  image: string | null;
+  setImage: () => null;
 }
-function UploadImage({handleSaveImage, image}: UploadImageProps) {
+
+
+function UploadImage({ handleSaveImage, image, setImage }: UploadImageProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  
   const handleDivClick = () => {
-    if(fileInputRef.current) {
+    if (fileInputRef.current) {
       fileInputRef.current.click();
     }
-  }
+  };
 
+  const handleRemoveImage = () => {
+    setImage(null)
+  };
 
   return (
-    <div onClick={handleDivClick}>
-      <div className="text-white">Upload Avatar</div>
-      <div className={`w-full h-40  object-contain cursor-pointer flex flex-col items-center  gap-5 bg-blue-900 rounded-lg ${image ? "p-0" : "p-5"} border border-white border-dashed`}>
-        {image ? <img src={image} className="object-cover w-full h-full rounded-lg"/>:
-        (<>
-          <div className="bg-blue-950 p-3 rounded-lg border border-blue-500">
-            <img src="./images/icon-upload.svg" alt="upload" />
+    <div onClick={!image ? handleDivClick : undefined}>
+      <div className="text-neutral2">Upload Avatar</div>
+      <div
+        className={`h-34 bg-neutral4/30 flex w-full ${!image ? "cursor-pointer" : "cursor-auto"} flex-col items-center rounded-lg object-contain backdrop-blur-xs ${image ? "p-0" : "p-5"} ${fileInputRef.current && "outline-neutral2 outline outline-offset-2"} border-neutral3 border border-dashed`}
+      >
+        {image ? (
+          <div className="flex flex-col items-center gap-5 p-5">
+            <img
+              src={image}
+              className="border-neutral3 h-16 w-16 rounded-lg border object-cover object-center"
+            />
+            <div className="text-neutral2 flex gap-3">
+              <div
+                className="bg-neutral4 z-100 rounded px-2 underline cursor-pointer"
+                onClick={handleRemoveImage}
+              >
+                Remove Image
+              </div>
+              <div className="bg-neutral4 rounded px-2 underline cursor-pointer" onClick={handleDivClick}>
+                Change image
+              </div>
+            </div>
           </div>
-          <div className="text-white">Drag and drop or click to upload</div>
-        </>
+        ) : (
+          <>
+            <div className="bg-neutral4 border-neutral3 rounded-lg border p-3">
+              <img src="./images/icon-upload.svg" alt="upload" />
+            </div>
+            <div className="text-neutral3">
+              Drag and drop or click to upload
+            </div>
+          </>
         )}
       </div>
-      <div className="text-gray-500 flex gap-5 mt-5">
+      <div className="text-neutral3 mt-2 mb-5 flex gap-5 text-xs">
         <img src="images/icon-info.svg" alt="i" />
         Upload your photo (JPG or PNG, max size: 500KB).
       </div>

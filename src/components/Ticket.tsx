@@ -5,10 +5,6 @@ interface TicketProps {
 
 function Ticket({ data, image }: TicketProps) {
   
-   data.email = "g@gmail.com"
-   data.github = "mygithub"
-   data.name = "gregory"
-
   return (
     <div className="p-10 flex flex-col items-center">
       <div className="mb-10">
