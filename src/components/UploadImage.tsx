@@ -3,7 +3,7 @@ import { useRef } from "react";
 interface UploadImageProps {
   handleSaveImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
   image: string | null;
-  setImage: () => null;
+  setImage: (image: string | null) => null;
 }
 
 
@@ -20,8 +20,22 @@ function UploadImage({ handleSaveImage, image, setImage }: UploadImageProps) {
     setImage(null)
   };
 
+  // prevent opening image as URL in browser
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault(); 
+    const file = e.dataTransfer.files?.[0]; 
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setImage(imageUrl); 
+    }
+  };
+
   return (
-    <div onClick={!image ? handleDivClick : undefined}>
+    <div onClick={!image ? handleDivClick : undefined} onDrop={handleDrop} onDragOver={handleDragOver}>
       <div className="text-neutral2">Upload Avatar</div>
       <div
         className={`h-34 bg-neutral4/30 flex w-full ${!image ? "cursor-pointer" : "cursor-auto"} flex-col items-center rounded-lg object-contain backdrop-blur-xs ${image ? "p-0" : "p-5"} ${fileInputRef.current && "outline-neutral2 outline outline-offset-2"} border-neutral3 border border-dashed`}
