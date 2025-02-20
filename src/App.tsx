@@ -8,11 +8,22 @@ function App() {
   const [isGenerated, setIsGenerated] = useState(false);
   const [image, setImage] = useState<string | null>(null);
   const [error, setError] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   // save image
   const handleSaveImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const file = e.target.files?.[0];
+    setImageError(false)
+    // check file size
+    if (file) {
+      const maxSize = 500 * 1024;
+
+      if (file.size > maxSize) {
+        setImageError(true);
+        return;
+      }
+    }
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setImage(imageUrl);
@@ -28,13 +39,13 @@ function App() {
   // submit data to generate ticket
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    setError(false);
     const error = validateForm();
     if (error) {
       setError(true);
       return;
     }
-    setError(false)
+
     setIsGenerated(true);
   };
 
@@ -48,7 +59,7 @@ function App() {
     }
 
     if (!emailRegex.test(email)) {
-      setFormData(prev => ({...prev, email: ""}))
+      setFormData((prev) => ({ ...prev, email: "" }));
       return true;
     }
 
@@ -82,6 +93,7 @@ function App() {
                 handleSaveImage={handleSaveImage}
                 image={image}
                 setImage={setImage}
+                imageError={imageError}
               />
               <InputField
                 label="Full Name"

@@ -4,10 +4,15 @@ interface UploadImageProps {
   handleSaveImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
   image: string | null;
   setImage: (image: string | null) => void;
+  imageError: boolean;
 }
 
-
-function UploadImage({ handleSaveImage, image, setImage }: UploadImageProps) {
+function UploadImage({
+  handleSaveImage,
+  image,
+  setImage,
+  imageError,
+}: UploadImageProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // add div to ref and trigger the click on input
@@ -19,7 +24,7 @@ function UploadImage({ handleSaveImage, image, setImage }: UploadImageProps) {
 
   // remove image from state by setting to null
   const handleRemoveImage = () => {
-    setImage(null)
+    setImage(null);
   };
 
   // prevent opening image as URL in browser
@@ -29,19 +34,23 @@ function UploadImage({ handleSaveImage, image, setImage }: UploadImageProps) {
 
   // if image is dropped, add it to state
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault(); 
-    const file = e.dataTransfer.files?.[0]; 
+    e.preventDefault();
+    const file = e.dataTransfer.files?.[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setImage(imageUrl); 
+      setImage(imageUrl);
     }
   };
 
   return (
-    <div onClick={!image ? handleDivClick : undefined} onDrop={handleDrop} onDragOver={handleDragOver}>
+    <div
+      onClick={!image ? handleDivClick : undefined}
+      onDrop={handleDrop}
+      onDragOver={handleDragOver}
+    >
       <div className="text-neutral2">Upload Avatar</div>
       <div
-        className={`hover:bg-neutral4 h-34 bg-neutral4/30 flex w-full ${!image ? "cursor-pointer" : "cursor-auto"} flex-col items-center rounded-lg object-contain backdrop-blur-xs ${image ? "p-0" : "p-5"} ${fileInputRef.current && "outline-neutral2 outline outline-offset-2"} border-neutral3 border border-dashed`}
+        className={`hover:bg-neutral4 bg-neutral4/30 flex h-34 w-full ${!image ? "cursor-pointer" : "cursor-auto"} flex-col items-center rounded-lg object-contain backdrop-blur-xs ${image ? "p-0" : "p-5"} ${fileInputRef.current && "outline-neutral2 outline outline-offset-2"} border-neutral3 border border-dashed`}
       >
         {image ? (
           <div className="flex flex-col items-center gap-5 p-5">
@@ -51,12 +60,15 @@ function UploadImage({ handleSaveImage, image, setImage }: UploadImageProps) {
             />
             <div className="text-neutral2 flex gap-3">
               <div
-                className="bg-neutral4 z-100 rounded px-2 underline cursor-pointer"
+                className="bg-neutral4 z-100 cursor-pointer rounded px-2 underline"
                 onClick={handleRemoveImage}
               >
                 Remove Image
               </div>
-              <div className="bg-neutral4 rounded px-2 underline cursor-pointer" onClick={handleDivClick}>
+              <div
+                className="bg-neutral4 cursor-pointer rounded px-2 underline"
+                onClick={handleDivClick}
+              >
                 Change image
               </div>
             </div>
@@ -72,9 +84,24 @@ function UploadImage({ handleSaveImage, image, setImage }: UploadImageProps) {
           </>
         )}
       </div>
-      <div className="text-neutral3 mt-2 mb-5 flex gap-5 text-xs">
-        <img src="images/icon-info.svg" alt="i" />
-        Upload your photo (JPG or PNG, max size: 500KB).
+      <div className="text-neutral3 mt-2 mb-5 flex gap-5">
+        {!imageError ? (
+          <div className="flex items-center gap-1 text-xs">
+            <img src="images/icon-info.svg" alt="i" />
+            <div>Upload your photo (JPG or PNG, max size: 500KB).</div>
+          </div>
+        ) : (
+          <div className="flex items-center gap-1 text-xs">
+            <img
+              src="/images/icon-info.svg"
+              alt="info"
+              className="brightness-[91%] contrast-[93%] hue-rotate-[325deg] invert-[52%] saturate-[1338%] sepia-[44%]"
+            />
+            <div className="text-orange1">
+              File too large. Please upload a file under 500KB
+            </div>
+          </div>
+        )}
       </div>
 
       {/* hidden image input */}
