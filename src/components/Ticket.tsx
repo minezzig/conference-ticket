@@ -24,7 +24,7 @@ function Ticket({ data, image }: TicketProps) {
       <div className="relative">
         <div className="text-neutral1 absolute flex h-full flex-col justify-around gap-5 p-5">
           <div className="flex items-start gap-3">
-            <img src="../../public/images/logo-mark.svg" />
+            <img src="/images/logo-mark.svg" />
             <div>
               <div className="text-3xl">Coding Conf</div>
               <div className="text-neutral3">Jan 31, 2025 / Austin, TX</div>
@@ -50,7 +50,7 @@ function Ticket({ data, image }: TicketProps) {
           </div>
          
         </div> <div className="absolute rotate-90 right-2 text-neutral3 text-xl top-1/2 -translate-y-1/2">#01609</div>
-        <img src="../../public/images/pattern-ticket.svg" />
+        <img src="/images/pattern-ticket.svg" />
       </div>
     </div>
   );
