@@ -41,7 +41,7 @@ function UploadImage({ handleSaveImage, image, setImage }: UploadImageProps) {
     <div onClick={!image ? handleDivClick : undefined} onDrop={handleDrop} onDragOver={handleDragOver}>
       <div className="text-neutral2">Upload Avatar</div>
       <div
-        className={`h-34 bg-neutral4/30 flex w-full ${!image ? "cursor-pointer" : "cursor-auto"} flex-col items-center rounded-lg object-contain backdrop-blur-xs ${image ? "p-0" : "p-5"} ${fileInputRef.current && "outline-neutral2 outline outline-offset-2"} border-neutral3 border border-dashed`}
+        className={`hover:bg-neutral4 h-34 bg-neutral4/30 flex w-full ${!image ? "cursor-pointer" : "cursor-auto"} flex-col items-center rounded-lg object-contain backdrop-blur-xs ${image ? "p-0" : "p-5"} ${fileInputRef.current && "outline-neutral2 outline outline-offset-2"} border-neutral3 border border-dashed`}
       >
         {image ? (
           <div className="flex flex-col items-center gap-5 p-5">

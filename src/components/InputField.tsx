@@ -22,7 +22,7 @@ function InputField({
         name={name}
         id={name}
         value={value}
-        className="focus:outline focus:outline-neutral2 focus:outline-offset-3 border-neutral3 text-neutral1 rounded-lg border bg-neutral4/30 p-3 backdrop-blur-xs"
+        className="hover:bg-neutral4 focus:outline focus:outline-neutral2 focus:outline-offset-3 border-neutral3 text-neutral1 rounded-lg border bg-neutral4/30 p-3 backdrop-blur-xs"
         placeholder={placeholder}
         onChange={onChange}
       />

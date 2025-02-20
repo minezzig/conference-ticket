@@ -38,7 +38,7 @@ function App() {
       <div className="text-neutral1 flex flex-col items-center justify-center">
         <img src="./images/logo-full.svg" alt="logo" />
       </div>
-      {isGenerated ? (
+      {!isGenerated ? (
         <>
           <div>
             <div className="text-neutral1 mt-5 text-center text-5xl md:text-5xl">
