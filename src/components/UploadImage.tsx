@@ -3,19 +3,21 @@ import { useRef } from "react";
 interface UploadImageProps {
   handleSaveImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
   image: string | null;
-  setImage: (image: string | null) => null;
+  setImage: (image: string | null) => void;
 }
 
 
 function UploadImage({ handleSaveImage, image, setImage }: UploadImageProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // add div to ref and trigger the click on input
   const handleDivClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
   };
 
+  // remove image from state by setting to null
   const handleRemoveImage = () => {
     setImage(null)
   };
@@ -25,6 +27,7 @@ function UploadImage({ handleSaveImage, image, setImage }: UploadImageProps) {
     e.preventDefault();
   };
 
+  // if image is dropped, add it to state
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault(); 
     const file = e.dataTransfer.files?.[0]; 

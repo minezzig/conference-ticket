@@ -31,27 +31,30 @@ function App() {
     <div className="flex min-h-screen w-full flex-col items-center bg-[url(./images/background-mobile.png)] bg-cover bg-no-repeat py-10 md:bg-[url(./images/background-tablet.png)] lg:bg-[url(./images/background-desktop.png)]">
       <img
         src="/images/pattern-squiggly-line-top.svg"
-        alt=""
+        alt="top squiggle"
         className="absolute top-0 right-0 h-20 md:h-auto"
       />
 
-      <div className="flex flex-col items-center justify-center text-neutral1">
+      <div className="text-neutral1 flex flex-col items-center justify-center">
         <img src="./images/logo-full.svg" alt="logo" />
       </div>
-      {!isGenerated ? (
+      {isGenerated ? (
         <>
           <div>
-            <div className="mt-5 max-w-[700px] text-center text-4xl text-neutral1 md:text-5xl">
+            <div className="text-neutral1 mt-5 text-center text-5xl md:text-5xl">
               Your Journey to Coding Conf 2025 Starts Here!
             </div>
-            <div className="m-5 text-center text-lg text-neutral3">
+            <div className="text-neutral3 m-5 text-center text-lg">
               Secure your spot at next year's biggest coding conference.
             </div>
           </div>
-          <div></div>
-          <div className="z-20 max-w-[600px]">
+          <div className="z-20 m-auto w-full max-w-[600px] px-10">
             <form onSubmit={handleSubmit}>
-              <UploadImage handleSaveImage={handleSaveImage} image={image} setImage={setImage}/>
+              <UploadImage
+                handleSaveImage={handleSaveImage}
+                image={image}
+                setImage={setImage}
+              />
               <InputField
                 label="Full Name"
                 name="name"
@@ -75,7 +78,7 @@ function App() {
               <div>
                 <button
                   type="submit"
-                  className="bg-orange1 hover:bg-orange2 mt-3 w-full rounded-lg p-3 font-bold text-lg"
+                  className="bg-orange1 hover:bg-orange2 mt-3 w-full rounded-lg p-3 text-lg font-bold"
                 >
                   Generate My Ticket
                 </button>
@@ -88,12 +91,12 @@ function App() {
       )}
       <img
         src="/images/pattern-squiggly-line-bottom-mobile-tablet.svg"
-        alt=""
+        alt="mobile squiggle"
         className="fixed bottom-0 block md:hidden"
       />
       <img
         src="/images/pattern-squiggly-line-bottom-desktop.svg"
-        alt=""
+        alt="desktop squiggle"
         className="fixed bottom-0 left-0 hidden md:block"
       />
     </div>
