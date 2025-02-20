@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 interface UploadImageProps {
   handleSaveImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -9,6 +9,7 @@ interface UploadImageProps {
 
 function UploadImage({ handleSaveImage, image, setImage, imageError, }: UploadImageProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isTarget, setIsTarget] = useState(false);
 
   // add div to ref and trigger the click on input
   const handleDivClick = () => {
@@ -25,6 +26,11 @@ function UploadImage({ handleSaveImage, image, setImage, imageError, }: UploadIm
   // prevent opening image as URL in browser
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
+    setIsTarget(true)
+  };
+  const handleDragOut = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsTarget(false)
   };
 
   // if image is dropped, add it to state
@@ -42,10 +48,11 @@ function UploadImage({ handleSaveImage, image, setImage, imageError, }: UploadIm
       onClick={!image ? handleDivClick : undefined}
       onDrop={handleDrop}
       onDragOver={handleDragOver}
+      onDragLeave={handleDragOut}
     >
       <div className="text-neutral2">Upload Avatar</div>
       <div
-        className={`hover:bg-neutral4 bg-neutral4/30 flex h-34 w-full ${!image ? "cursor-pointer" : "cursor-auto"} flex-col items-center rounded-lg object-contain backdrop-blur-xs ${image ? "p-0" : "p-5"} ${fileInputRef.current && "outline-neutral2 outline outline-offset-2"} border-neutral3 border border-dashed`}
+        className={`hover:bg-neutral4 ${isTarget && "bg-orange1"} bg-neutral4/30 flex h-34 w-full ${!image ? "cursor-pointer" : "cursor-auto"} flex-col items-center rounded-lg object-contain backdrop-blur-xs ${image ? "p-0" : "p-5"} ${fileInputRef.current && "outline-neutral2 outline outline-offset-2"} border-neutral3 border border-dashed`}
       >
         {image ? (
           <div className="flex flex-col items-center gap-5 p-5">
