@@ -50,7 +50,8 @@ function Ticket({ data, image }: TicketProps) {
               </div>
             </div>
           </div>
-        </div>
+         
+        </div> <div className="absolute rotate-90 right-2 text-neutral3 text-xl top-1/2 -translate-y-1/2">#01609</div>
         <img src="../../public/images/pattern-ticket.svg" />
       </div>
     </div>
