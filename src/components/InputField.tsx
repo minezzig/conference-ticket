@@ -7,14 +7,10 @@ interface InputFieldTypes {
   error: boolean
 }
 
-function InputField({
-  label,
-  name,
-  value,
-  placeholder = "",
-  onChange,
-  error
-}: InputFieldTypes) {
+
+
+function InputField({ label, name, value, placeholder = "", onChange, error }: InputFieldTypes) {
+
   return (
     <div className="text-neutral2 mb-5 flex flex-col gap-3">
       <label htmlFor="name">{label}</label>

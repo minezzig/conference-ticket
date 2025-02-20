@@ -1,20 +1,18 @@
+import Gradient from "./Gradient";
+
 interface TicketProps {
   data: { name: string; email: string; github: string };
   image: string | null;
 }
 
 function Ticket({ data, image }: TicketProps) {
-  data.name = "Gregory Minezzi";
-  data.email = "gregoryminezzi@gmail.com";
-  data.github = "minezzig";
+
   return (
     <div className="flex flex-col items-center p-10">
       <div className="mb-10">
         <div className="text-neutral1 text-center text-4xl">
           Congrats,{" "}
-          <span className="bg-[linear-gradient(to_right,hsl(7,86%,67%),hsl(0,0%,100%),hsl(7,86%,67%),hsl(0,0%,100%))] bg-clip-text text-4xl font-bold text-transparent">
-            {data.name}
-          </span>
+          <Gradient text={data.name}/>
           ! Your ticket is ready.
         </div>
         <div className="text-neutral3 text-center text-lg">

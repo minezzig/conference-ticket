@@ -7,12 +7,7 @@ interface UploadImageProps {
   imageError: boolean;
 }
 
-function UploadImage({
-  handleSaveImage,
-  image,
-  setImage,
-  imageError,
-}: UploadImageProps) {
+function UploadImage({ handleSaveImage, image, setImage, imageError, }: UploadImageProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // add div to ref and trigger the click on input
