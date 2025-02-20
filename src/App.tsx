@@ -7,7 +7,9 @@ function App() {
   const [formData, setFormData] = useState({ name: "", email: "", github: "" });
   const [isGenerated, setIsGenerated] = useState(false);
   const [image, setImage] = useState<string | null>(null);
+  const [error, setError] = useState(false);
 
+  // save image
   const handleSaveImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const file = e.target.files?.[0];
@@ -17,14 +19,40 @@ function App() {
     }
   };
 
+  // save any input to state object
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     console.log(formData);
   };
 
+  // submit data to generate ticket
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const error = validateForm();
+    if (error) {
+      setError(true);
+      return;
+    }
+    setError(false)
     setIsGenerated(true);
+  };
+
+  // form validation
+  const validateForm = () => {
+    const { name, email, github } = formData;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!name || !email || !github) {
+      return true;
+    }
+
+    if (!emailRegex.test(email)) {
+      setFormData(prev => ({...prev, email: ""}))
+      return true;
+    }
+
+    return false;
   };
 
   return (
@@ -60,6 +88,7 @@ function App() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
+                error={error}
               />
               <InputField
                 label="Email Address"
@@ -67,6 +96,7 @@ function App() {
                 value={formData.email}
                 placeholder="example@email.com"
                 onChange={handleChange}
+                error={error}
               />
               <InputField
                 label="GitHub Username"
@@ -74,6 +104,7 @@ function App() {
                 value={formData.github}
                 placeholder="@yourusername"
                 onChange={handleChange}
+                error={error}
               />
               <div>
                 <button
