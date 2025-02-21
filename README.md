@@ -33,7 +33,7 @@ Users should be able to:
 
 ### Links
 
-Live: [E-commerce Product Page](https://conference-ticket-gm.vercel.app)
+Live: [Conference ticket generator ](https://conference-ticket-gm.vercel.app)
 Code: [github repo](https://github.com/minezzig/conference-ticket)
 
 ## My process
