@@ -1,14 +1,12 @@
+import { useLocation } from "react-router";
 import Gradient from "./Gradient";
 
-interface TicketProps {
-  data: { name: string; email: string; github: string };
-  image: string | null;
-}
-
-function Ticket({ data, image }: TicketProps) {
+function Ticket() {
+  const location = useLocation();
+  const {formData: data, image} = location.state
 
   return (
-    <div className="flex flex-col items-center p-10">
+    <div className="flex flex-col items-center p-10 z-100">
       <div className="mb-10 max-w-[700px] flex flex-col items-center">
         <div className="text-neutral1 text-center text-4xl  md:text-5xl">
           Congrats,{" "}
