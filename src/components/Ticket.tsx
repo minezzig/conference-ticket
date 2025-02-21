@@ -9,13 +9,13 @@ function Ticket({ data, image }: TicketProps) {
 
   return (
     <div className="flex flex-col items-center p-10">
-      <div className="mb-10">
-        <div className="text-neutral1 text-center text-4xl">
+      <div className="mb-10 max-w-[700px] flex flex-col items-center">
+        <div className="text-neutral1 text-center text-4xl  md:text-5xl">
           Congrats,{" "}
           <Gradient text={data.name}/>
           ! Your ticket is ready.
         </div>
-        <div className="text-neutral3 text-center text-lg">
+        <div className="text-neutral3 text-center text-lg mt-10 max-w-[400px]">
           We've emailed your ticket to{" "}
           <span className="text-orange1">{data.email}</span> and will send
           updates in the run up to the vent
